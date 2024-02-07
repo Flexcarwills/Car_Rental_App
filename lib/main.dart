@@ -1,4 +1,3 @@
-import 'package:car_rental_app/Authentication_Screens/auth.dart';
 import 'package:car_rental_app/Authentication_Screens/authentication.dart';
 import 'package:car_rental_app/Introduciton/splash.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +67,7 @@ class MyApp extends StatelessWidget {
             ),
           )),
       themeMode: ThemeMode.system,
-      home: const AuthScreen(),
+      home: const AuthencationScreen(),
     );
   }
 }
