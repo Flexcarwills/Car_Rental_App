@@ -1,5 +1,6 @@
 import 'package:car_rental_app/Authentication_Screens/authentication.dart';
 import 'package:car_rental_app/Home_Widgets/home_scree.dart';
+import 'package:car_rental_app/Introduciton/onboardingScreen.dart';
 import 'package:car_rental_app/Introduciton/splash.dart';
 import 'package:car_rental_app/user_screens/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class MyApp extends StatelessWidget {
             ),
           )),
       themeMode: ThemeMode.system,
-      home: const mainscreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }

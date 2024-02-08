@@ -18,37 +18,50 @@ class _mainscreenState extends State<mainscreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Center(child: const Text('Flex Car')),
-        ),
-        body: IndexedStack(
-          children: widgetList,
-          index: myindex,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) {
-            setState(() {
-              myindex = index;
-            });
-          },
-          currentIndex: myindex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.car_rental),
-              label: 'Rent',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            )
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: const Text('Flex Car')),
+      ),
+      // body: myindex == 0
+      //     ? HomeScreen()
+      //     : myindex == 2
+      //         ? Profile()
+      //         : Center(child: Text('Rent Screen')),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            myindex = index;
+          });
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (cyx) => widgetList[index]));
+          // if (index == 0) {
+          //   Navigator.of(context)
+          //       .push(MaterialPageRoute(builder: (cyx) => HomeScreen()));
+          // }
+          // if (index == 1) {
+          //   Navigator.of(context).push(MaterialPageRoute(
+          //       builder: (cyx) => Center(child: Text('Rent Screen'))));
+          // }
+          // if (index == 2) {
+          //   Navigator.of(context)
+          //       .push(MaterialPageRoute(builder: (cyx) => Profile()));
+          // }
+        },
+        currentIndex: myindex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.car_rental),
+            label: 'Rent',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          )
+        ],
       ),
     );
   }

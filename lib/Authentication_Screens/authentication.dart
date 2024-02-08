@@ -1,4 +1,5 @@
 import 'package:car_rental_app/Authentication_Screens/sigin.dart';
+import 'package:car_rental_app/user_screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -24,6 +25,8 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
     //   _islogin = !_islogin;
     // });
     formkey.currentState!.save();
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (ctx) => mainscreen()));
   }
 
   @override
