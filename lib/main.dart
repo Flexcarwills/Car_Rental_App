@@ -3,6 +3,7 @@ import 'package:car_rental_app/Home_Widgets/home_scree.dart';
 import 'package:car_rental_app/Introduciton/onboardingScreen.dart';
 import 'package:car_rental_app/Introduciton/splash.dart';
 import 'package:car_rental_app/user_screens/main_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -78,7 +79,18 @@ class MyApp extends StatelessWidget {
             ),
           )),
       themeMode: ThemeMode.system,
-      home: const OnBoardingScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          }
+          if (snapshot.hasData) {
+            return const mainscreen();
+          }
+          return const OnBoardingScreen();
+        },
+      ),
     );
   }
 }
