@@ -51,6 +51,8 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
           'password': pass,
           //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => main_screen()))
         });
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (ctx) => mainscreen()));
       }
     } on FirebaseAuthException catch (error) {
       ScaffoldMessenger.of(context).clearSnackBars();
