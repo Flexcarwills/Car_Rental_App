@@ -3,9 +3,17 @@ import 'package:car_rental_app/Home_Widgets/home_scree.dart';
 import 'package:car_rental_app/Introduciton/onboardingScreen.dart';
 import 'package:car_rental_app/Introduciton/splash.dart';
 import 'package:car_rental_app/user_screens/main_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 

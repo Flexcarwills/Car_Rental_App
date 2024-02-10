@@ -1,5 +1,7 @@
 import 'package:car_rental_app/Authentication_Screens/sigin.dart';
 import 'package:car_rental_app/user_screens/main_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,13 +12,16 @@ class AuthencationScreen extends StatefulWidget {
   State<AuthencationScreen> createState() => _AuthencationScreenState();
 }
 
+final _firebase = FirebaseAuth.instance;
+
 class _AuthencationScreenState extends State<AuthencationScreen> {
   final formkey = GlobalKey<FormState>();
   var _email = '';
   var pass = '';
   var _username = '';
   var _islogin = true;
-  void Savedata() {
+  var _isUploading = false;
+  Future<void> Savedata() async {
     final isValid = formkey.currentState!.validate();
     if (!isValid) {
       return;
@@ -25,8 +30,40 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
     //   _islogin = !_islogin;
     // });
     formkey.currentState!.save();
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (ctx) => mainscreen()));
+    try {
+      setState(() {
+        _isUploading = true;
+      });
+      if (_islogin) {
+        final customerCredentials = await _firebase.signInWithEmailAndPassword(
+            email: _email, password: pass);
+      } else {
+        final customerCredentials = await _firebase
+            .createUserWithEmailAndPassword(email: _email, password: pass);
+
+        // Sending and creating the collection on firebase fireStore that is the remote ot cloud database
+        await FirebaseFirestore.instance
+            .collection('Customer_Credentials')
+            .doc(customerCredentials.user!.uid)
+            .set({
+          'username': _username,
+          'email': _email,
+          'password': pass,
+          //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => main_screen()))
+        });
+      }
+    } on FirebaseAuthException catch (error) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.message ?? 'Authentication Failed'),
+        ),
+      );
+    }
+    setState(() {
+      _isUploading = false;
+      _islogin = true;
+    });
   }
 
   @override
