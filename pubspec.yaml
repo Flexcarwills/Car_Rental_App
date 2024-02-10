@@ -40,6 +40,8 @@ dependencies:
   confetti: ^0.7.0
   font_awesome_flutter: ^10.6.0
   firebase_core: ^2.25.4
+  cloud_firestore: ^4.15.4
+  firebase_auth: ^4.17.4
 
 dev_dependencies:
   flutter_test:

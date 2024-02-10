@@ -1,4 +1,5 @@
 import 'package:car_rental_app/Home_Widgets/home_scree.dart';
+import 'package:car_rental_app/ShowData_Screens/Homescreendata.dart';
 import 'package:car_rental_app/user_screens/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -22,11 +23,7 @@ class _mainscreenState extends State<mainscreen> {
       appBar: AppBar(
         title: const Center(child: const Text('Flex Car')),
       ),
-      // body: myindex == 0
-      //     ? HomeScreen()
-      //     : myindex == 2
-      //         ? Profile()
-      //         : Center(child: Text('Rent Screen')),
+      body: ShowData(),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
