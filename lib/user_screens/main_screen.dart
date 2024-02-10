@@ -23,26 +23,14 @@ class _mainscreenState extends State<mainscreen> {
       appBar: AppBar(
         title: const Center(child: const Text('Flex Car')),
       ),
-      body: ShowData(),
+      body: IndexedStack(
+        children: [widgetList[myindex]],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
             myindex = index;
           });
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (cyx) => widgetList[index]));
-          // if (index == 0) {
-          //   Navigator.of(context)
-          //       .push(MaterialPageRoute(builder: (cyx) => HomeScreen()));
-          // }
-          // if (index == 1) {
-          //   Navigator.of(context).push(MaterialPageRoute(
-          //       builder: (cyx) => Center(child: Text('Rent Screen'))));
-          // }
-          // if (index == 2) {
-          //   Navigator.of(context)
-          //       .push(MaterialPageRoute(builder: (cyx) => Profile()));
-          // }
         },
         currentIndex: myindex,
         items: const [

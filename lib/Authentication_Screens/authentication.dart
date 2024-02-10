@@ -52,6 +52,8 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
           'email': _email,
           'password': pass,
         });
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (ctx) => mainscreen()));
       }
     } on FirebaseAuthException catch (error) {
       ScaffoldMessenger.of(context).clearSnackBars();
@@ -250,23 +252,25 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
                       height: 10,
                     ),
                     // Created the Elevated button for Login and Sign up Based the State where it is login or Register.
-                    ElevatedButton(
-                      onPressed: Savedata,
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: isDark
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context)
-                                  .colorScheme
-                                  .secondaryContainer),
-                      child: Text(
-                        _islogin ? 'Login' : 'Signup',
-                        style: TextStyle(
-                          color: isDark
-                              ? Colors.black
-                              : Theme.of(context).colorScheme.secondary,
+                    if (_isUploading) const CircularProgressIndicator(),
+                    if (!_isUploading)
+                      ElevatedButton(
+                        onPressed: Savedata,
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: isDark
+                                ? Theme.of(context).colorScheme.primary
+                                : Theme.of(context)
+                                    .colorScheme
+                                    .secondaryContainer),
+                        child: Text(
+                          _islogin ? 'Login' : 'Signup',
+                          style: TextStyle(
+                            color: isDark
+                                ? Colors.black
+                                : Theme.of(context).colorScheme.secondary,
+                          ),
                         ),
                       ),
-                    ),
                     const SizedBox(
                       height: 15,
                     ),

@@ -13,7 +13,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: const Center(child: Text('Welcome to Car Rent App')),
+        body: const Center(
+            child: Text(
+          'Welcome to Car Rent App',
+          style: TextStyle(color: Colors.black),
+        )),
       ),
     );
   }
