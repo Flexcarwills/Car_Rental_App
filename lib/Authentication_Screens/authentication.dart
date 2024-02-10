@@ -37,6 +37,8 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
       if (_islogin) {
         final customerCredentials = await _firebase.signInWithEmailAndPassword(
             email: _email, password: pass);
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (ctx) => mainscreen()));
       } else {
         final customerCredentials = await _firebase
             .createUserWithEmailAndPassword(email: _email, password: pass);
@@ -49,10 +51,7 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
           'username': _username,
           'email': _email,
           'password': pass,
-          //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => main_screen()))
         });
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (ctx) => mainscreen()));
       }
     } on FirebaseAuthException catch (error) {
       ScaffoldMessenger.of(context).clearSnackBars();
