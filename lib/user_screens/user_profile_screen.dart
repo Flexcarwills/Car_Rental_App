@@ -12,18 +12,8 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        title: const Text('Profile Page'),
-        backgroundColor: Colors.grey[900],
-      ),
-      // body: ListView(
-      //   children: [
-      //     //Profile Picture
-      //     Icon(
-      //       Icons.person,
-      //       size: 72,
-      //       color: Colors.amber,
-      //     )
+
+      body: Center(child: Text('Profile Screen')),
 
       //Username
 
