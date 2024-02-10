@@ -37,6 +37,8 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
       if (_islogin) {
         final customerCredentials = await _firebase.signInWithEmailAndPassword(
             email: _email, password: pass);
+        // Navigator.of(context)
+        //     .pushReplacement(MaterialPageRoute(builder: (ctx) => mainscreen()));
       } else {
         final customerCredentials = await _firebase
             .createUserWithEmailAndPassword(email: _email, password: pass);
@@ -61,7 +63,6 @@ class _AuthencationScreenState extends State<AuthencationScreen> {
     }
     setState(() {
       _isUploading = false;
-      _islogin = true;
     });
   }
 
