@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,15 +49,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyABKbRIIoj_dLY-seCZAJ7wA8qvr8sNrY0',
-    appId: '1:315733665633:web:2185c50063fdf8e0258720',
-    messagingSenderId: '315733665633',
-    projectId: 'car-rental-customer-5f198',
-    authDomain: 'car-rental-customer-5f198.firebaseapp.com',
-    storageBucket: 'car-rental-customer-5f198.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAYw8aQhl01zwA116mLFkK9FsNhkfx7b94',
     appId: '1:315733665633:android:e9792365f9769ed8258720',
@@ -67,14 +64,5 @@ class DefaultFirebaseOptions {
     projectId: 'car-rental-customer-5f198',
     storageBucket: 'car-rental-customer-5f198.appspot.com',
     iosBundleId: 'com.example.carRentalApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCXFw-2XM_Sn7CZq18XiUKB8Im_xUTJTc4',
-    appId: '1:315733665633:ios:68128984976e1a3e258720',
-    messagingSenderId: '315733665633',
-    projectId: 'car-rental-customer-5f198',
-    storageBucket: 'car-rental-customer-5f198.appspot.com',
-    iosBundleId: 'com.example.carRentalApp.RunnerTests',
   );
 }

@@ -7,13 +7,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_options.dart';
+import 'firebase/project-1/firebase_options.dart' as p1;
+import 'firebase/project-2/firebase_options.dart' as p2;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+      name: 'project-1', options: p1.DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+      name: 'project-2', options: p2.DefaultFirebaseOptions.currentPlatform);
 
   runApp(const MyApp());
 }

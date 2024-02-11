@@ -14,14 +14,17 @@ class mainscreen extends StatefulWidget {
 
 class _mainscreenState extends State<mainscreen> {
   int myindex = 0;
-  List<Widget> widgetList = const [
-    HomeScreen(),
+  List<Widget> widgetList = [
+    const ShowData(),
     Center(child: Text('Rent Screen')),
     Profile(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Flex Car')),
+      ),
       body: IndexedStack(
         children: [widgetList[myindex]],
       ),

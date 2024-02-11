@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key, required this.carname});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int myindex = 0;
+  final String? carname;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: const Center(
-            child: Text(
-          'Welcome to Car Rent App',
-          style: TextStyle(color: Colors.black),
-        )),
+    return Center(
+      child: Text(
+        carname!,
+        style: TextStyle(color: Colors.black),
       ),
     );
   }
