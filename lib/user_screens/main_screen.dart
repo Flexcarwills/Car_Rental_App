@@ -22,9 +22,6 @@ class _mainscreenState extends State<mainscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: const Text('Flex Car')),
-      ),
       body: IndexedStack(
         children: [widgetList[myindex]],
       ),
