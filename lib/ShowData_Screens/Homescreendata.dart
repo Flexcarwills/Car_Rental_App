@@ -40,8 +40,10 @@ class _ShowDataState extends State<ShowData> {
           padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
           itemCount: cardata.length,
           itemBuilder: (ctx, index) {
-            final carname = cardata[index].data();
-            return HomeScreen(carname: carname['Car_Name']);
+            final cars = cardata[index].data();
+            return HomeScreen(
+              cardata: cars,
+            );
           },
         );
       },

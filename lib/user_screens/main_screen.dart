@@ -15,15 +15,22 @@ class mainscreen extends StatefulWidget {
 class _mainscreenState extends State<mainscreen> {
   int myindex = 0;
   List<Widget> widgetList = [
+    const Profile(),
     const ShowData(),
-    Center(child: Text('Rent Screen')),
     Profile(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Flex Car')),
+        title: Center(child: Text('Flex Car')),
+        actions: [
+          IconButton.filled(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: IndexedStack(
         children: [widgetList[myindex]],
@@ -42,7 +49,7 @@ class _mainscreenState extends State<mainscreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.car_rental),
-            label: 'Rent',
+            label: 'Rentals',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

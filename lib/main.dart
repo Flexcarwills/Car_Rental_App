@@ -1,19 +1,21 @@
 import 'package:car_rental_app/Authentication_Screens/authentication.dart';
 import 'package:car_rental_app/Home_Widgets/home_scree.dart';
 import 'package:car_rental_app/Introduciton/onboardingScreen.dart';
-import 'package:car_rental_app/Introduciton/splash.dart';
+
 import 'package:car_rental_app/user_screens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase/project-1/firebase_options.dart' as p1;
-import 'firebase/project-2/firebase_options.dart' as p2;
+import 'firebase/project-1-cutomer/firebase_options.dart' as p1;
+import 'firebase/project-2-Admin/firebase_options.dart' as p2;
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      name: 'project-1', options: p1.DefaultFirebaseOptions.currentPlatform);
+  //Error Solved
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   await Firebase.initializeApp(
       name: 'project-2', options: p2.DefaultFirebaseOptions.currentPlatform);
 
@@ -21,7 +23,7 @@ void main() async {
 }
 
 var kColorScheme =
-    ColorScheme.fromSeed(seedColor: Color.fromARGB(220, 67, 186, 233));
+    ColorScheme.fromSeed(seedColor: const Color.fromARGB(220, 67, 186, 233));
 
 var kdarkcolorScheme = ColorScheme.fromSeed(
     brightness: Brightness.dark,
@@ -87,10 +89,18 @@ class MyApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
           }
-          if (snapshot.hasData) {
-            return const mainscreen();
+          if (snapshot.connectionState == ConnectionState.active) {
+            final user = snapshot.data;
+            if (user != null) {
+              return const mainscreen();
+            } else {
+              return const AuthencationScreen();
+            }
           }
-          return const OnBoardingScreen();
+          if (snapshot.connectionState == ConnectionState.none) {
+            return const OnBoardingScreen();
+          }
+          return CircularProgressIndicator();
         },
       ),
     );
