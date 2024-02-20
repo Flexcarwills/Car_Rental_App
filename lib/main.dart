@@ -1,13 +1,13 @@
 import 'package:car_rental_app/Authentication_Screens/authentication.dart';
-import 'package:car_rental_app/Home_Widgets/home_scree.dart';
+import 'package:car_rental_app/Home_Widgets/rentals_screen.dart';
 import 'package:car_rental_app/Introduciton/onboardingScreen.dart';
+import 'package:car_rental_app/user_screens/homepage.dart';
 
-import 'package:car_rental_app/user_screens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase/project-1-cutomer/firebase_options.dart' as p1;
+// import 'firebase/project-1-cutomer/firebase_options.dart' as p1;
 import 'firebase/project-2-Admin/firebase_options.dart' as p2;
 import 'firebase_options.dart';
 
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           colorScheme: kdarkcolorScheme,
           iconButtonTheme: IconButtonThemeData(
             style: IconButton.styleFrom(
-                backgroundColor: kdarkcolorScheme.primaryContainer,
+                //backgroundColor: kdarkcolorScheme.primaryContainer,
                 foregroundColor: kdarkcolorScheme.secondary),
           ),
           textButtonTheme: TextButtonThemeData(
@@ -62,12 +62,12 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: kColorScheme,
           appBarTheme: const AppBarTheme().copyWith(
-            backgroundColor: kColorScheme.onPrimaryContainer,
+            backgroundColor: kColorScheme.primary,
             foregroundColor: kColorScheme.primaryContainer,
           ),
           iconButtonTheme: IconButtonThemeData(
             style: IconButton.styleFrom(
-                backgroundColor: kColorScheme.primaryContainer,
+                //backgroundColor: kColorScheme.primaryContainer,
                 foregroundColor: kColorScheme.secondary),
           ),
           textButtonTheme: TextButtonThemeData(
@@ -92,15 +92,15 @@ class MyApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.active) {
             final user = snapshot.data;
             if (user != null) {
-              return const mainscreen();
+              return const Homepage();
             } else {
               return const AuthencationScreen();
             }
           }
-          if (snapshot.connectionState == ConnectionState.none) {
+          if (snapshot.connectionState == ConnectionState.done) {
             return const OnBoardingScreen();
           }
-          return CircularProgressIndicator();
+          return OnBoardingScreen();
         },
       ),
     );
